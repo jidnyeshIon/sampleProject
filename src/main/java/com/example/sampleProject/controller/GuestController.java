@@ -21,12 +21,13 @@ public class GuestController {
         this.guestService = guestService;
     }
 
-
+    // Endpoint to get all guests
     @GetMapping("/")
     public ResponseEntity<List<Guest>> getAllGuest(){
         return ResponseEntity.ok(this.guestService.getAllGuest());
     }
 
+    // Endpoint to add a new guest
     @PostMapping("/")
     public  ResponseEntity<Guest> addGuest(@RequestBody  Guest guest){
         System.out.println("first Name " + guest.getFirstName());
@@ -34,6 +35,7 @@ public class GuestController {
         System.out.println("email  " + guest.getEmailAddress());
         System.out.println("country Name " + guest.getCountry());
 
+        // Return response entity with the added guest
         return ResponseEntity.ok(this.guestService.addGuest(guest));
     }
 

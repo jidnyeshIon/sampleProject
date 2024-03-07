@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Landon Hotel: rooms</title>
+</head>
+<body>
+<h1>Welcome to the Guests Page</h1>
+<form th:action="@{/rooms/}" th:object="${formData}" method="post">
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+    <label for="name">Name:</label>
+    <input type="text" id="name" th:field="*{name}" />
+    <label for="room_number">Room Number:</label>
+    <input type="text" id="room_number" th:field="*{number}" />
+
+    <label for="bed">Bed Info :</label>
+    <input type="text" id="bed" th:field="*{bed}" />
+
+    <button type="submit">Submit</button>
+</form>
+</body>
+</html>
+

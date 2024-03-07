@@ -12,9 +12,10 @@ import java.util.List;
 
 @Repository
 public interface RoomRepository extends JpaRepository<Room,Long> {
+    // Query to find all vacant rooms
     @Query("SELECT r FROM Room r WHERE r.isBooked = false")
     List<Room> findVacantRooms();
-
+    // Query to find a room by its room number
     @Query("SELECT r FROM Room r WHERE r.room_number = :value")
     Room findByRoomNumber(@Param("value") String room_number);
 }
