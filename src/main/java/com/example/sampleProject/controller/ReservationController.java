@@ -46,6 +46,7 @@ public class ReservationController {
     }
 
     // Save the booking details
+    @GetMapping("/saveBooking")
     @PostMapping("/saveBooking")
     public String saveBooking(@RequestParam("guestId") long guestId, Model model) {
         System.out.println("GuestID : " + guestId);

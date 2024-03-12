@@ -27,8 +27,9 @@ public class GuestController {
 
     // Endpoint to get all guests
     @GetMapping("/allGuest")
-    public ResponseEntity<List<Guest>> getAllGuest() {
-        return ResponseEntity.ok(this.guestService.getAllGuest());
+    public String getAllGuest(Model model){
+        model.addAttribute("guests", this.guestService.getAllGuest());
+        return "hotel-guests";
     }
 
     // Endpoint to add a new guest

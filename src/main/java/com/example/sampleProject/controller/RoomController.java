@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 //@RestController
@@ -20,14 +21,14 @@ import java.util.List;
 //        this.roomService = roomService;
 //    }
 //
-//    // Endpoint to get all rooms
+//
 //    @GetMapping("/")
 //    public ResponseEntity<List<Room>> getRooms(){
 //        // Return response entity with all rooms
 //        return ResponseEntity.ok(this.roomService.getRooms());
 //    }
 //
-//    // Endpoint to add a new room
+//
 //    @PostMapping("/")
 //    public ResponseEntity<Room> addRoom(@RequestBody Room formData){
 //        // Print room number and room name for debugging
@@ -47,13 +48,13 @@ public class RoomController {
     public RoomController(RoomService roomService) {
         this.roomService = roomService;
     }
-
+    // Endpoint to get all rooms
     @GetMapping("/rooms")
     public String getRooms(Model model){
         model.addAttribute("rooms",this.roomService.getRooms() );
         return "hotel-rooms";
     }
-
+    // Endpoint to add a new room
     @GetMapping("/addnew")
     public String addNew(Model model){
         Room room = new Room();
@@ -61,10 +62,14 @@ public class RoomController {
         model.addAttribute("roomForm", room);
         return "add-room";
     }
-
+    //Save the newly added room
     @PostMapping("/save")
     public String addRooms(@ModelAttribute("roomForm") Room room){
         System.out.println(room.toString());
+        Date dt = new Date();
+        room.setCheckInDate(new java.sql.Date(dt.getTime()));
+        room.setCheckOutDate(new java.sql.Date(dt.getTime()));
+
        this.roomService.addRooms(room);
        return "redirect:index.html";
     }
