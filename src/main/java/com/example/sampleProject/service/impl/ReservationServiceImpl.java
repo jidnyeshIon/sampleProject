@@ -26,10 +26,7 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     // Method to get all vacant rooms
-    @Override
-    public List<Room> getAllVacantRooms() {
-        return this.roomRepository.findVacantRooms();
-    }
+
 
     // Method to book a room
     @Override

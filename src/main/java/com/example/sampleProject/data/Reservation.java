@@ -20,16 +20,6 @@ public class Reservation {
     @Column(name = "RES_DATE")
     private Date date;
 
-//    @Column(name = "CHECK_IN_DATE")
-//    private Date check_in_date;
-
-//    @Column(name = "CHRCK_OUT_DATE")
-//    private Date check_out_date;
-
-//    public Reservation(Date check_in_date, Date check_out_date) {
-//        this.check_in_date = check_in_date;
-//        this.check_out_date = check_out_date;
-//    }
 
     public Reservation(Long id, Long roomId, Long guestId, Date date) {
         this.id = id;
@@ -75,21 +65,7 @@ public class Reservation {
         this.date = date;
     }
 
-//    public Date getCheck_in_date() {
-//        return check_in_date;
-//    }
-//
-//    public void setCheck_in_date(Date check_in_date) {
-//        this.check_in_date = check_in_date;
-//    }
-//
-//    public Date getCheck_out_date() {
-//        return check_out_date;
-//    }
-//
-//    public void setCheck_out_date(Date check_out_date) {
-//        this.check_out_date = check_out_date;
-//    }
+
 
     @Override
     public String toString() {

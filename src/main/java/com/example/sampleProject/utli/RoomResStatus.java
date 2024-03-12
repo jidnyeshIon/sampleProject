@@ -1,6 +1,8 @@
 package com.example.sampleProject.utli;
 
 
+import com.example.sampleProject.data.BedType;
+
 public class RoomResStatus {
 
     private String checkInDate;

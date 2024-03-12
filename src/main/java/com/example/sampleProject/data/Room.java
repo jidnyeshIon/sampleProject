@@ -17,18 +17,16 @@ public class Room {
     @Column(name = "NAME")
     private String name;
     @Column(name = "ROOM_NUMBER")
-    private String  room_number;
+    private String room_number;
+    @Enumerated(EnumType.STRING)
     @Column(name = "BED_TYPE")
-    private  String bedInfo ;
-    @Column(name ="CHECK_IN_DATE")
+    private BedType bedInfo;
+    @Column(name = "CHECK_IN_DATE")
     private Date checkInDate;
 
-    @Column(name ="CHECK_OUT_DATE")
+    @Column(name = "CHECK_OUT_DATE")
     private Date checkOutDate;
 
-
-    @Column(name = "IS_BOOKED")
-    private boolean isBooked;
 
     public Room(Long id, Date checkInDate, Date checkOutDate) {
         this.id = id;
@@ -36,12 +34,12 @@ public class Room {
         this.checkOutDate = checkOutDate;
     }
 
-    public Room(Long id, String name, String room_number, String bedInfo, boolean isBooked) {
+    public Room(Long id, String name, String room_number, BedType bedInfo) {
         this.id = id;
         this.name = name;
         this.room_number = room_number;
         this.bedInfo = bedInfo;
-        this.isBooked = isBooked;
+
     }
 
     public Room() {
@@ -73,20 +71,14 @@ public class Room {
         this.room_number = room_number;
     }
 
-    public String getBedInfo() {
+    public BedType getBedInfo() {
         return bedInfo;
     }
 
-    public void setBedInfo(String bedInfo) {
+    public void setBedInfo(BedType bedInfo) {
         this.bedInfo = bedInfo;
     }
-    public boolean isBooked() {
-        return isBooked;
-    }
 
-    public void setBooked(boolean booked) {
-        isBooked = booked;
-    }
 
     public Date getCheckInDate() {
         return checkInDate;
@@ -104,24 +96,19 @@ public class Room {
         this.checkOutDate = checkOutDate;
     }
 
-//    @Override
-
     @Override
     public String toString() {
         return "Room{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", room_number='" + room_number + '\'' +
-                ", bedInfo='" + bedInfo + '\'' +
-                ", isBooked=" + isBooked +
+                ", bedInfo=" + bedInfo +
+                ", checkInDate=" + checkInDate +
+                ", checkOutDate=" + checkOutDate +
                 '}';
     }
-//    public String toString() {
-//        return "Room{" +
-//                "id=" + id +
-//                ", name='" + name + '\'' +
-//                ", roomNumber='" + room_number + '\'' +
-//                ", bedInfo='" + bedInfo + '\'' +
-//                '}';
-//    }
 }
+
+
+
+

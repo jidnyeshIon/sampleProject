@@ -57,7 +57,7 @@ public class RoomController {
     @GetMapping("/addnew")
     public String addNew(Model model){
         Room room = new Room();
-        room.setBooked(true);
+
         model.addAttribute("roomForm", room);
         return "add-room";
     }

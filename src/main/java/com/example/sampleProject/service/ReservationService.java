@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface ReservationService {
 
-    public List<Room> getAllVacantRooms();
+
     public void saveBooking(long guestId, String roomNO);
 }
