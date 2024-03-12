@@ -40,6 +40,10 @@ public class Guest {
     public Guest() {
 
     }
+    public Guest(String firstName){
+        this.firstName = firstName;
+
+    }
 
     public Long getId() {
         return id;

@@ -33,19 +33,14 @@ public class ReservationServiceImpl implements ReservationService {
 
     // Method to book a room
     @Override
-    public void bookRoom(Room room, Guest guest) {
-        // Set the room as booked
-        room.setBooked(true);
-        // Save the updated room status
-        roomRepository.save(room);
+    public void saveBooking(long guestID, String roomNo) {
+        Room room = this.roomRepository.findByRoomNumber(roomNo);
 
-        // Add the guest to the database
-        this.guestService.addGuest(guest);
 
         // Create a reservation entry
         Reservation reservation = new Reservation();
         reservation.setRoomId(room.getId()); // Set room ID
-        reservation.setGuestId(guest.getId()); // Set guest ID
+        reservation.setGuestId(guestID); // Set guest ID
         Date currentDate = new Date();
         reservation.setDate(new java.sql.Date(currentDate.getTime())); // Set reservation date
         // Save the reservation entry

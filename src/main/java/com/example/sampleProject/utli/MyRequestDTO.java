@@ -22,4 +22,12 @@ public class MyRequestDTO {
     public void setGuest(Guest guest) {
         this.guest = guest;
     }
+
+    @Override
+    public String toString() {
+        return "MyRequestDTO{" +
+                "roomNo='" + roomNo + '\'' +
+                ", guest=" + guest.toString() +
+                '}';
+    }
 }

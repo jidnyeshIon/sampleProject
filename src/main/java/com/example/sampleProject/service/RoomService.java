@@ -3,6 +3,7 @@ package com.example.sampleProject.service;
 import com.example.sampleProject.data.Room;
 
 
+import java.sql.Date;
 import java.util.List;
 
 public interface RoomService {
@@ -11,6 +12,9 @@ public interface RoomService {
    public  Room addRooms(Room room);
 
    public Room findRoomByRoomNumber(String roomNumber);
+
+
+
 
 
 

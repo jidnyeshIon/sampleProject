@@ -1,31 +1,15 @@
-INSERT INTO ROOM (NAME, ROOM_NUMBER, BED_INFO) VALUES ('Piccadilly', 'P1', '1Q');
-INSERT INTO ROOM (NAME, ROOM_NUMBER, BED_INFO) VALUES ('Piccadilly', 'P2', '1Q');
-INSERT INTO ROOM (NAME, ROOM_NUMBER, BED_INFO) VALUES ('Piccadilly', 'P3', '1Q');
-INSERT INTO ROOM (NAME, ROOM_NUMBER, BED_INFO) VALUES ('Piccadilly', 'P4', '2D');
-INSERT INTO ROOM (NAME, ROOM_NUMBER, BED_INFO) VALUES ('Piccadilly', 'P5', '2D');
-INSERT INTO ROOM (NAME, ROOM_NUMBER, BED_INFO) VALUES ('Piccadilly', 'P6', '2D');
-INSERT INTO ROOM (NAME, ROOM_NUMBER, BED_INFO) VALUES ('Cambridge', 'C1', '1K');
-INSERT INTO ROOM (NAME, ROOM_NUMBER, BED_INFO) VALUES ('Cambridge', 'C2', '1K');
-INSERT INTO ROOM (NAME, ROOM_NUMBER, BED_INFO) VALUES ('Cambridge', 'C3', '1K');
-INSERT INTO ROOM (NAME, ROOM_NUMBER, BED_INFO) VALUES ('Westminster', 'W1', '1K');
-INSERT INTO ROOM (NAME, ROOM_NUMBER, BED_INFO) VALUES ('Westminster', 'W2', '1K');
-INSERT INTO ROOM (NAME, ROOM_NUMBER, BED_INFO) VALUES ('Westminster', 'W3', '1K');
-INSERT INTO ROOM (NAME, ROOM_NUMBER, BED_INFO) VALUES ('Westminster', 'W4', '1K');
-INSERT INTO ROOM (NAME, ROOM_NUMBER, BED_INFO) VALUES ('Westminster', 'W5', '2D');
-INSERT INTO ROOM (NAME, ROOM_NUMBER, BED_INFO) VALUES ('Westminster', 'W6', '2D');
-INSERT INTO ROOM (NAME, ROOM_NUMBER, BED_INFO) VALUES ('Westminster', 'W7', '2D');
-INSERT INTO ROOM (NAME, ROOM_NUMBER, BED_INFO) VALUES ('Oxford', 'O1', '1K');
-INSERT INTO ROOM (NAME, ROOM_NUMBER, BED_INFO) VALUES ('Oxford', 'O2', '1K');
-INSERT INTO ROOM (NAME, ROOM_NUMBER, BED_INFO) VALUES ('Oxford', 'O3', '1Q');
-INSERT INTO ROOM (NAME, ROOM_NUMBER, BED_INFO) VALUES ('Oxford', 'O4', '1Q');
-INSERT INTO ROOM (NAME, ROOM_NUMBER, BED_INFO) VALUES ('Oxford', 'O5', '1Q');
-INSERT INTO ROOM (NAME, ROOM_NUMBER, BED_INFO) VALUES ('Victoria', 'V1', '1K');
-INSERT INTO ROOM (NAME, ROOM_NUMBER, BED_INFO) VALUES ('Victoria', 'V2', '2D');
-INSERT INTO ROOM (NAME, ROOM_NUMBER, BED_INFO) VALUES ('Victoria', 'V3', '2D');
-INSERT INTO ROOM (NAME, ROOM_NUMBER, BED_INFO) VALUES ('Manchester', 'M1', '1K');
-INSERT INTO ROOM (NAME, ROOM_NUMBER, BED_INFO) VALUES ('Manchester', 'M2', '1K');
-INSERT INTO ROOM (NAME, ROOM_NUMBER, BED_INFO) VALUES ('Manchester', 'M3', '1K');
-INSERT INTO ROOM (NAME, ROOM_NUMBER, BED_INFO) VALUES ('Manchester', 'M4', '1K');
+INSERT INTO ROOM (NAME, ROOM_NUMBER, BED_TYPE, CHECK_IN_DATE, CHECK_OUT_DATE) VALUES
+                                                                                  ('Heron', 'C1', 'Single', '2024-03-04', '2024-03-04'),
+                                                                                  ('Bee-eater', 'A2', 'Single', '2024-03-06', '2024-03-09'),
+                                                                                  ('Kingfisher', 'B2', 'Double', '2024-03-02', '2024-03-08'),
+                                                                                  ('Burmese', 'C2', 'Double', '2024-03-02', '2024-03-02'),
+                                                                                  ('Bee-eater', 'A3', 'Single', '2024-03-06', '2024-03-09'),
+                                                                                  ('Kingfisher', 'B4', 'Double', '2024-03-02', '2024-03-08'),
+                                                                                  ('Burmese', 'C5', 'Double', '2024-03-02', '2024-03-02'),
+                                                                                  ('Swan', 'A6', 'Double', '2024-03-01', '2024-03-01'),
+                                                                                  ('Kangaroo', 'C7', 'Double', '2024-03-03', '2024-03-03'),
+                                                                                  ('Capuchin', 'B8', 'Double', '2024-03-09', '2024-03-09');
+
 
 INSERT INTO GUEST (LAST_NAME, FIRST_NAME, EMAIL_ADDRESS, COUNTRY, ADDRESS, STATE, PHONE_NUMBER) VALUES('Adams', 'Roy', 'radams1v@xinhuanet.com', 'United States', '2872 Marquette Street', 'NY', '1-(235)314-9823');
 INSERT INTO GUEST (LAST_NAME, FIRST_NAME, EMAIL_ADDRESS, COUNTRY, ADDRESS, STATE, PHONE_NUMBER) VALUES('Adams', 'Martin', 'madams2b@msu.edu', 'China', '4 Mandrake Plaza', '', '9-(401)660-9813');

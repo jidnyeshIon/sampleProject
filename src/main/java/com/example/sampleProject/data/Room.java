@@ -3,6 +3,9 @@ package com.example.sampleProject.data;
 
 import jakarta.persistence.*;
 
+import java.sql.Date;
+
+
 @Entity
 @Table(name = "Room")
 public class Room {
@@ -15,16 +18,25 @@ public class Room {
     private String name;
     @Column(name = "ROOM_NUMBER")
     private String  room_number;
-    @Column(name = "BED_INFO")
-    private String bedInfo;
+    @Column(name = "BED_TYPE")
+    private  String bedInfo ;
+    @Column(name ="CHECK_IN_DATE")
+    private Date checkInDate;
 
+    @Column(name ="CHECK_OUT_DATE")
+    private Date checkOutDate;
 
 
     @Column(name = "IS_BOOKED")
     private boolean isBooked;
 
+    public Room(Long id, Date checkInDate, Date checkOutDate) {
+        this.id = id;
+        this.checkInDate = checkInDate;
+        this.checkOutDate = checkOutDate;
+    }
 
-    public Room(Long id, String name, String room_number, String bedInfo,boolean isBooked) {
+    public Room(Long id, String name, String room_number, String bedInfo, boolean isBooked) {
         this.id = id;
         this.name = name;
         this.room_number = room_number;
@@ -76,8 +88,34 @@ public class Room {
         isBooked = booked;
     }
 
+    public Date getCheckInDate() {
+        return checkInDate;
+    }
+
+    public void setCheckInDate(Date checkInDate) {
+        this.checkInDate = checkInDate;
+    }
+
+    public Date getCheckOutDate() {
+        return checkOutDate;
+    }
+
+    public void setCheckOutDate(Date checkOutDate) {
+        this.checkOutDate = checkOutDate;
+    }
 
 //    @Override
+
+    @Override
+    public String toString() {
+        return "Room{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", room_number='" + room_number + '\'' +
+                ", bedInfo='" + bedInfo + '\'' +
+                ", isBooked=" + isBooked +
+                '}';
+    }
 //    public String toString() {
 //        return "Room{" +
 //                "id=" + id +

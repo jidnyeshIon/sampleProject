@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rooms Available</title>
+</head>
+<body>
+
+<h1>Rooms Available </h1>
+<table>
+    <tr>
+        <td>Room No</td>
+        <td>Room Name</td>
+  
+
+
+    </tr>
+    <tr th:each="room: ${rooms}">
+        <td th:text="${room.room_number}">RoomNo</td>
+        <td th:text="${room.name}">RoomName</td>
+        
+    </tr>
+
+
+
+
+
+    <p>
+        <a href="chooseRoom" > Choose Room </a>
+    </p>
+
+</table>
+</body>
+</html>

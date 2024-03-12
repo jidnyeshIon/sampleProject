@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> User requirements</title>
+</head>
+<body>
+
+<h1>Please Select the date and room type </h1>
+<form action="#" th:action="@{/checkAvailability}" th:method="post" th:object="${requirementInfo}">
+    <!--    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />-->
+    <label for="checkInDate">Check In :</label>
+    <input type="date" id="checkInDate" th:field="*{checkInDate}" />
+    <label for="checkOutDate">Check In :</label>
+    <input type="date" id="checkOutDate" th:field="*{checkOutDate}" />
+
+    <label for="bedType">Bed Info :</label>
+    <input type="text" id="bedType" th:field="*{bedType}" />
+
+
+    <button type="submit">Submit</button>
+</form>
+
+</body>
+</html>

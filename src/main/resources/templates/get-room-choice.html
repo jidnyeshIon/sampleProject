@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Get Room Choice</title>
+</head>
+<body>
+
+<h1>Select the room no</h1>
+<form action="#" th:action="@{/saveRoomChoice}" th:object="${room}" method="post">
+    <input type="text" placeholder="Enter room Number "  th:field="*{room_number}" required/><br/>
+    <button type="submit">Submit</button>
+</form>
+
+
+<p>
+    <a href="add-guest.html" > Add Guest Details </a>
+</p>
+
+</body>
+</html>
