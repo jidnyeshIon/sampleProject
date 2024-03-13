@@ -109,17 +109,17 @@ public class Guest {
         this.emailAddress = emailAddress;
     }
 
-//    @Override
-//    public String toString() {
-//        return "Guest{" +
-//                "guestId=" + id +
-//                ", firstName='" + FIRST_NAME + '\'' +
-//                ", lastName='" + LAST_NAME + '\'' +
-//                ", emailAddress='" + emailAddress + '\'' +
-//                ", address='" + ADDRESS + '\'' +
-//                ", country='" + COUNTRY + '\'' +
-//                ", state='" + STATE + '\'' +
-//                ", phoneNumber='" + PHONE_NUMBER + '\'' +
-//                '}';
-//    }
+    @Override
+    public String toString() {
+        return "Guest{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", address='" + address + '\'' +
+                ", country='" + country + '\'' +
+                ", state='" + state + '\'' +
+                ", emailAddress='" + emailAddress + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                '}';
+    }
 }

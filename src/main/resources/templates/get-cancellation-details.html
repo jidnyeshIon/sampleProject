@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cancellation details</title>
+</head>
+<body>
+
+<h1>Enter the room no</h1>
+<form action="#" th:action="@{/cancelBooking}" th:object="${dto}" method="post">
+    <input type="text" placeholder="Enter room Number "  th:field="*{roomNo}" required/><br/>
+
+    <label for="firstName">First Name:</label>
+    <input type="text" id="firstName" th:field="*{guest.firstName}" required/><br/>
+
+    <label for="lastName">Last Name:</label>
+    <input type="text" id="lastName" th:field="*{guest.lastName}" required/><br/>
+
+    <label for="emailAddress">Email Address:</label>
+    <input type="email" id="emailAddress" th:field="*{guest.emailAddress}" required/><br/>
+
+    <label for="phoneNumber">Phone Number:</label>
+    <input type="text" id="phoneNumber" th:field="*{guest.phoneNumber}" required/><br/>
+    <button type="submit">Submit</button>
+</form>
+
+
+<!--<p>-->
+<!--    <a href="add-guest.html" > Add Guest Details </a>-->
+<!--</p>-->
+
+</body>
+</html>

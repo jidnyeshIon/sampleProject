@@ -24,4 +24,10 @@ public class guestServiceImpl implements GuestService {
     public Guest addGuest(Guest guest) {
         return this.guestRepository.save(guest);
     }
+
+    @Override
+    public Guest findGuestByEmailAddress(String value) {
+//        System.out.println("Getting email in guestService :" + value);
+        return this.guestRepository.findGuestByEmailAddress(value);
+    }
 }

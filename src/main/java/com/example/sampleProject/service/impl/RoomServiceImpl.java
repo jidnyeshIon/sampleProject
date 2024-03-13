@@ -32,6 +32,10 @@ public class RoomServiceImpl implements RoomService {
         return this.roomRepository.findByRoomNumber(roomNumber);
     }
 
+    @Override
+    public Room saveRoom(Room room) {
+      return  this.roomRepository.save(room);
+    }
 
 
 }

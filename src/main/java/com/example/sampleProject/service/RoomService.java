@@ -14,9 +14,5 @@ public interface RoomService {
    public Room findRoomByRoomNumber(String roomNumber);
 
 
-
-
-
-
-
+   public Room saveRoom(Room room);
 }

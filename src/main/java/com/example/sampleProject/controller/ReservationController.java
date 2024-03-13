@@ -1,9 +1,13 @@
 package com.example.sampleProject.controller;
 
 import com.example.sampleProject.data.BedType;
+import com.example.sampleProject.data.Guest;
+import com.example.sampleProject.data.Reservation;
 import com.example.sampleProject.data.Room;
+import com.example.sampleProject.service.GuestService;
 import com.example.sampleProject.service.ReservationService;
 import com.example.sampleProject.service.RoomService;
+import com.example.sampleProject.utli.DTO;
 import com.example.sampleProject.utli.DateUtils;
 import com.example.sampleProject.utli.RoomResStatus;
 import org.springframework.stereotype.Controller;
@@ -22,12 +26,15 @@ public class ReservationController {
     private String roomNo;
     private final ReservationService reservationService;
     private final RoomService roomService;
+    private final GuestService guestService;
     private final DateUtils dateUtils = new DateUtils();
 
     // Constructor injection for ReservationService and RoomService
-    public ReservationController(ReservationService reservationService, RoomService roomService) {
+    public ReservationController(ReservationService reservationService, RoomService roomService, GuestService guestService) {
         this.reservationService = reservationService;
         this.roomService = roomService;
+
+        this.guestService = guestService;
     }
 
     // Display the form to choose a room
@@ -93,5 +100,35 @@ public class ReservationController {
 
         model.addAttribute("rooms", filteredRooms);
         return "available-rooms";
+    }
+
+    @GetMapping("/cancellationDetails")
+    public String getCancellationDetails(Model model){
+        DTO dto = new DTO();
+        model.addAttribute("dto", dto);
+        return "get-cancellation-details";
+
+    }
+    @PostMapping("/cancelBooking")
+    public String cancelBooking(@ModelAttribute("dto") DTO dto){
+            String roomNo = dto.getRoomNo();
+            Guest guest = dto.getGuest();
+        System.out.println(guest.toString());
+
+        System.out.println("Guest email :" + guest.getEmailAddress());
+            guest = this.guestService.findGuestByEmailAddress(guest.getEmailAddress());
+        System.out.println(guest.toString());
+            long guestId = guest.getId();
+            Room room = this.roomService.findRoomByRoomNumber(roomNo);
+            long roomID = room.getId();
+            Reservation reservation = this.reservationService.getReservationByRoomIdAndGuestId(roomID,guestId);
+            room.setCheckInDate(new java.sql.Date(new Date().getTime()));
+            room.setCheckOutDate(new java.sql.Date(new Date().getTime()));
+            room = this.roomService.saveRoom(room);
+            this.reservationService.deleteReservation(reservation);
+            return "redirect:index.html";
+
+
+
     }
 }

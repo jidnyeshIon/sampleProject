@@ -43,4 +43,14 @@ public class ReservationServiceImpl implements ReservationService {
         // Save the reservation entry
         this.reservationRepository.save(reservation);
     }
+
+    @Override
+    public Reservation getReservationByRoomIdAndGuestId(long roomNo, long guestId) {
+        return this.reservationRepository.getReservationByRoomIdAndGuestId(roomNo,guestId);
+    }
+
+    @Override
+    public void deleteReservation(Reservation reservation) {
+        this.reservationRepository.delete(reservation);
+    }
 }
