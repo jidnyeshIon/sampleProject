@@ -85,6 +85,13 @@ public class ReservationController {
         this.checkOutDate = dateUtils.createDateFromDateString(roomResStatus.getCheckOutDate());
         BedType bedType = BedType.valueOf(roomResStatus.getBedType());
 
+        // Validation for checkein checkout dates
+        Date currentDate = new Date();
+        if(checkOutDate.before(checkInDate) || (checkOutDate.before(currentDate)  || checkInDate.before(currentDate))){
+            System.out.println("Invalid Date Selected !!!");
+            return "redirect:/book-room ";
+        }
+
         System.out.println("Check in date " + checkInDate);
         System.out.println("Check Out date " + checkOutDate);
         System.out.println("Type " + roomResStatus.getBedType());
@@ -111,22 +118,42 @@ public class ReservationController {
     }
     @PostMapping("/cancelBooking")
     public String cancelBooking(@ModelAttribute("dto") DTO dto){
-            String roomNo = dto.getRoomNo();
-            Guest guest = dto.getGuest();
-        System.out.println(guest.toString());
+        String roomNo = dto.getRoomNo();
+        Guest guest = dto.getGuest();
+//        System.out.println(guest.toString());
 
-        System.out.println("Guest email :" + guest.getEmailAddress());
+//        System.out.println("Guest email :" + guest.getEmailAddress());
+        try {
             guest = this.guestService.findGuestByEmailAddress(guest.getEmailAddress());
-        System.out.println(guest.toString());
-            long guestId = guest.getId();
-            Room room = this.roomService.findRoomByRoomNumber(roomNo);
-            long roomID = room.getId();
-            Reservation reservation = this.reservationService.getReservationByRoomIdAndGuestId(roomID,guestId);
-            room.setCheckInDate(new java.sql.Date(new Date().getTime()));
-            room.setCheckOutDate(new java.sql.Date(new Date().getTime()));
-            room = this.roomService.saveRoom(room);
-            this.reservationService.deleteReservation(reservation);
+        } catch (Exception e) {
+
+            System.out.println("No booking found for the guest");
             return "redirect:index.html";
+
+        }
+//        System.out.println(guest.toString());
+
+        // If the guest is not found
+        if (guest == null) {
+            return "redirect:index.html";
+        }
+
+        long guestId = guest.getId();
+        Room room = this.roomService.findRoomByRoomNumber(roomNo);
+
+        // No room available with givent
+        if (room == null) {
+            System.out.println("Invalid room Number");
+            return "redirect:index.html";
+
+        }
+        long roomID = room.getId();
+        Reservation reservation = this.reservationService.getReservationByRoomIdAndGuestId(roomID, guestId);
+        room.setCheckInDate(new java.sql.Date(new Date().getTime()));
+        room.setCheckOutDate(new java.sql.Date(new Date().getTime()));
+        room = this.roomService.saveRoom(room);
+        this.reservationService.deleteReservation(reservation);
+        return "redirect:index.html";
 
 
 

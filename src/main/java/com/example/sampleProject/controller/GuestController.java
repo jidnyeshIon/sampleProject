@@ -44,8 +44,20 @@ public class GuestController {
     @PostMapping("/saveGuest")
     public String addRooms(@ModelAttribute("guest") Guest guest, RedirectAttributes redirectAttributes) {
         System.out.println("Guest email : " + guest.getEmailAddress());
-        Guest newAddedGuest = this.guestService.addGuest(guest);
-        redirectAttributes.addAttribute("guestId", guest.getId());
+
+        // If the guest is not present then only add the guest
+        long guestId;
+        Guest alreadyExistGuest = this.guestService.findGuestByEmailAddress(guest.getEmailAddress());
+        if(alreadyExistGuest == null){
+            Guest newAddedGuest = this.guestService.addGuest(guest);
+            guestId = newAddedGuest.getId();
+        }
+        else{
+            guestId = alreadyExistGuest.getId();
+        }
+
+        System.out.println("Guest id : " + guest.getId());
+        redirectAttributes.addAttribute("guestId",guestId);
         return "redirect:/saveBooking";
     }
 }
