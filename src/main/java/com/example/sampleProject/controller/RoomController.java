@@ -10,37 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Date;
 import java.util.List;
 
-//@RestController
-//@RequestMapping("/rooms")
-//public class RoomController {
-//
-//    private final RoomService roomService;
-//
-//    // Constructor injection for RoomService
-//    public RoomController(RoomService roomService) {
-//        this.roomService = roomService;
-//    }
-//
-//
-//    @GetMapping("/")
-//    public ResponseEntity<List<Room>> getRooms(){
-//        // Return response entity with all rooms
-//        return ResponseEntity.ok(this.roomService.getRooms());
-//    }
-//
-//
-//    @PostMapping("/")
-//    public ResponseEntity<Room> addRoom(@RequestBody Room formData){
-//        // Print room number and room name for debugging
-//        System.out.println("Room Number: " + formData.getRoom_number());
-//        System.out.println("Room Name: " + formData.getName());
-//
-//        // Return response entity with the added room
-//        return ResponseEntity.ok(this.roomService.addRooms(formData));
-//    }
-//}
 @Controller
-//@RequestMapping("/rooms")
 public class RoomController {
 
     private final RoomService roomService;
@@ -66,10 +36,6 @@ public class RoomController {
     @PostMapping("/save")
     public String addRooms(@ModelAttribute("roomForm") Room room){
         System.out.println(room.toString());
-        Date dt = new Date();
-        room.setCheckInDate(new java.sql.Date(dt.getTime()));
-        room.setCheckOutDate(new java.sql.Date(dt.getTime()));
-
        this.roomService.addRooms(room);
        return "redirect:index.html";
     }
