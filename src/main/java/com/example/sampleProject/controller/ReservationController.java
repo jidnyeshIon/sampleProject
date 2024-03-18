@@ -61,10 +61,7 @@ public class ReservationController {
         System.out.println("Printing from saveBooking");
         System.out.println("Check in Date " + this.checkInDate);
         System.out.println("Check out Date " + this.checkOutDate);
-        Room bookedRoom = this.roomService.findRoomByRoomNumber(this.roomNo);
-        bookedRoom.setCheckInDate(new java.sql.Date(this.checkInDate.getTime()));
-        bookedRoom.setCheckOutDate(new java.sql.Date(this.checkOutDate.getTime()));
-        this.reservationService.saveBooking(guestId, roomNo);
+        this.reservationService.saveBooking(guestId, roomNo, checkInDate,checkOutDate);
         System.out.println("Room Booked successfully ");
         return "redirect:index.html";
     }
@@ -85,6 +82,7 @@ public class ReservationController {
         this.checkOutDate = dateUtils.createDateFromDateString(roomResStatus.getCheckOutDate());
         BedType bedType = BedType.valueOf(roomResStatus.getBedType());
 
+
         // Validation for checkein checkout dates
         Date currentDate = new Date();
         if(checkOutDate.before(checkInDate) || (checkOutDate.before(currentDate)  || checkInDate.before(currentDate))){
@@ -92,20 +90,49 @@ public class ReservationController {
             return "redirect:/book-room ";
         }
 
+
+            if(checkOutDate.before(checkInDate)){
+                System.out.println("Invalid Date Selection ");
+                return "redirect:/book-room";
+            }
+
+
         System.out.println("Check in date " + checkInDate);
         System.out.println("Check Out date " + checkOutDate);
         System.out.println("Type " + roomResStatus.getBedType());
 
+
+        // Get all the reservations which are overlaping
+
+
+
         // Get the list of all rooms from the room service
         List<Room> rooms = this.roomService.getRooms();
 
-        // Filter the rooms based on check-out date and bed type
-        List<Room> filteredRooms = rooms.stream()
-                .filter(room -> room.getCheckOutDate().before(checkInDate))     // Filter rooms where the check-out date is before the check-in date
-                .filter(room -> room.getBedInfo() == bedType)     // Filter rooms based on bed type
-                .collect(Collectors.toList());
+        List<Reservation> bookedReservations = this.reservationService.overlappingReservations( checkInDate,  checkOutDate);
+        if(bookedReservations.isEmpty() ) {
+            System.out.println("No booking found ");
+        }
+        else {
+            bookedReservations.forEach(System.out::println);
+        }
 
-        model.addAttribute("rooms", filteredRooms);
+
+            // Filter the rooms based on check-out date and bed type
+            // Filter the rooms based on check-out date and bed type, and select rooms whose IDs are not present in the list of booked reservations
+            List<Room> filteredRooms = rooms.stream()
+                    // Filter rooms based on whether their ID is not present in the list of booked reservations
+                    .filter(room -> bookedReservations.stream()
+                            .map(Reservation::getRoomId)
+                            .noneMatch(bookedRoomId -> bookedRoomId == room.getId()))
+                    // Filter rooms based on bed type
+                    .filter(room -> room.getBedInfo().equals(bedType))
+                    .collect(Collectors.toList());
+
+
+
+            model.addAttribute("rooms", filteredRooms);
+
         return "available-rooms";
     }
 
@@ -125,9 +152,19 @@ public class ReservationController {
 //        System.out.println("Guest email :" + guest.getEmailAddress());
         try {
             guest = this.guestService.findGuestByEmailAddress(guest.getEmailAddress());
+<<<<<<< HEAD
         } catch (Exception e) {
 
             System.out.println("No booking found for the guest");
+=======
+        System.out.println(guest.toString());
+            long guestId = guest.getId();
+            Room room = this.roomService.findRoomByRoomNumber(roomNo);
+            long roomID = room.getId();
+            Reservation reservation = this.reservationService.getReservationByRoomIdAndGuestId(roomID,guestId);
+
+            this.reservationService.deleteReservation(reservation);
+>>>>>>> refactoring
             return "redirect:index.html";
 
         }
