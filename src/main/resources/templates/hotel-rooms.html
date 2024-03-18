@@ -8,19 +8,18 @@
 <h1>Welcome to the Guests Page</h1>
 <table>
     <tr>
+        <td>Room Id</td>
         <td>Room No</td>
         <td>Room Name</td>
         <td>Bed Info </td>
-        <td>Check In</td>
-        <td>Check Out</td>
+
 
     </tr>
     <tr th:each="room: ${rooms}">
+        <td th:text="${room.id}">RoomID</td>
         <td th:text="${room.room_number}">RoomNo</td>
         <td th:text="${room.name}">RoomName</td>
         <td th:text="${room.bedInfo}">BedInfo</td>
-        <td th:text="${room.checkInDate}">Checkin</td>
-        <td th:text="${room.checkOutDate}">CheckOut</td>
 
     </tr>
 </table>

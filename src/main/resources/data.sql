@@ -1,14 +1,13 @@
-INSERT INTO ROOM (NAME, ROOM_NUMBER, BED_TYPE, CHECK_IN_DATE, CHECK_OUT_DATE) VALUES
-                                                                                  ('Heron', 'C1', 'Single', '2024-03-04', '2024-03-04'),
-                                                                                  ('Bee-eater', 'A2', 'Single', '2024-03-06', '2024-03-09'),
-                                                                                  ('Kingfisher', 'B2', 'Double', '2024-03-02', '2024-03-08'),
-                                                                                  ('Burmese', 'C2', 'Double', '2024-03-02', '2024-03-02'),
-                                                                                  ('Bee-eater', 'A3', 'Single', '2024-03-06', '2024-03-09'),
-                                                                                  ('Kingfisher', 'B4', 'Double', '2024-03-02', '2024-03-08'),
-                                                                                  ('Burmese', 'C5', 'Double', '2024-03-02', '2024-03-02'),
-                                                                                  ('Swan', 'A6', 'Double', '2024-03-01', '2024-03-01'),
-                                                                                  ('Kangaroo', 'C7', 'Double', '2024-03-03', '2024-03-03'),
-                                                                                  ('Capuchin', 'B8', 'Double', '2024-03-09', '2024-03-09');
+INSERT INTO ROOM (NAME, ROOM_NUMBER, BED_TYPE) VALUES ('Heron', 'C1', 'Single');
+INSERT INTO ROOM (NAME, ROOM_NUMBER, BED_TYPE) VALUES ('Bee-eater', 'A2', 'Single');
+INSERT INTO ROOM (NAME, ROOM_NUMBER, BED_TYPE) VALUES ('Kingfisher', 'B2', 'Double');
+INSERT INTO ROOM (NAME, ROOM_NUMBER, BED_TYPE) VALUES ('Burmese', 'C2', 'Double');
+INSERT INTO ROOM (NAME, ROOM_NUMBER, BED_TYPE) VALUES ('Bee-eater', 'A3', 'Single');
+INSERT INTO ROOM (NAME, ROOM_NUMBER, BED_TYPE) VALUES ('Kingfisher', 'B4', 'Double');
+INSERT INTO ROOM (NAME, ROOM_NUMBER, BED_TYPE) VALUES ('Burmese', 'C5', 'Double');
+INSERT INTO ROOM (NAME, ROOM_NUMBER, BED_TYPE) VALUES ('Swan', 'A6', 'Double');
+INSERT INTO ROOM (NAME, ROOM_NUMBER, BED_TYPE) VALUES ('Kangaroo', 'C7', 'Double');
+INSERT INTO ROOM (NAME, ROOM_NUMBER, BED_TYPE) VALUES ('Capuchin', 'B8', 'Double');
 
 
 INSERT INTO GUEST (LAST_NAME, FIRST_NAME, EMAIL_ADDRESS, COUNTRY, ADDRESS, STATE, PHONE_NUMBER) VALUES('Adams', 'Roy', 'radams1v@xinhuanet.com', 'United States', '2872 Marquette Street', 'NY', '1-(235)314-9823');
@@ -212,5 +211,5 @@ INSERT INTO GUEST (LAST_NAME, FIRST_NAME, EMAIL_ADDRESS, COUNTRY, ADDRESS, STATE
 INSERT INTO GUEST (LAST_NAME, FIRST_NAME, EMAIL_ADDRESS, COUNTRY, ADDRESS, STATE, PHONE_NUMBER) VALUES('Wright', 'Joan', 'jwright1q@phoca.cz', 'Moldova', '55 Dawn Parkway', '', '7-(830)749-3794');
 INSERT INTO GUEST (LAST_NAME, FIRST_NAME, EMAIL_ADDRESS, COUNTRY, ADDRESS, STATE, PHONE_NUMBER) VALUES('Young', 'Judith', 'jyoung11@goodreads.com', 'United States', '2 Sachtjen Parkway', 'WV', '9-(659)879-6466');
 
-INSERT INTO RESERVATION (ROOM_ID, GUEST_ID, RES_DATE) VALUES ((SELECT ROOM_ID FROM ROOM WHERE ROOM_NUMBER = 'C2'), (SELECT GUEST_ID FROM GUEST WHERE LAST_NAME = 'Young'), '2022-01-01');
+--INSERT INTO RESERVATION (ROOM_ID, GUEST_ID, RES_DATE) VALUES ((SELECT ROOM_ID FROM ROOM WHERE ROOM_NUMBER = 'C2'), (SELECT GUEST_ID FROM GUEST WHERE LAST_NAME = 'Young'), '2022-01-01');
 

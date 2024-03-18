@@ -9,8 +9,10 @@ import com.example.sampleProject.service.GuestService;
 import com.example.sampleProject.service.ReservationService;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ReservationServiceImpl implements ReservationService {
@@ -28,9 +30,31 @@ public class ReservationServiceImpl implements ReservationService {
     // Method to get all vacant rooms
 
 
+    @Override
+    public List<Reservation> getAllReservations() {
+        return this.reservationRepository.findAll();
+    }
+
+    @Override
+    public List<Reservation> overlappingReservations(Date startDate, Date endDate) {
+        List<Reservation> reservations = this.getAllReservations();
+
+        List<Reservation> notVaccant =reservations.stream()
+                .filter(reservation ->((reservation.getCheckInDate().before(startDate) && reservation.getCheckOutDate().after(endDate))
+                        || (reservation.getCheckInDate().after(startDate) && reservation.getCheckOutDate().before(endDate))
+                        || (reservation.getCheckInDate().before(startDate) && reservation.getCheckOutDate().before(endDate))
+                        || (reservation.getCheckInDate().after(startDate) && reservation.getCheckOutDate().after(endDate)))
+                        || (reservation.getCheckInDate().equals(startDate) && reservation.getCheckOutDate().equals(endDate)))
+                .collect(Collectors.toList());
+
+        return notVaccant;
+
+
+    }
+
     // Method to book a room
     @Override
-    public void saveBooking(long guestID, String roomNo) {
+    public void saveBooking(long guestID, String roomNo,Date checkInDate, Date checkOutDate) {
         Room room = this.roomRepository.findByRoomNumber(roomNo);
 
 
@@ -40,6 +64,8 @@ public class ReservationServiceImpl implements ReservationService {
         reservation.setGuestId(guestID); // Set guest ID
         Date currentDate = new Date();
         reservation.setDate(new java.sql.Date(currentDate.getTime())); // Set reservation date
+        reservation.setCheckInDate(new java.sql.Date(checkInDate.getTime()));
+        reservation.setCheckOutDate(new java.sql.Date(checkOutDate.getTime()));
         // Save the reservation entry
         this.reservationRepository.save(reservation);
     }
