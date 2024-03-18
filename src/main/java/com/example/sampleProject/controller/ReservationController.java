@@ -82,6 +82,12 @@ public class ReservationController {
         this.checkOutDate = dateUtils.createDateFromDateString(roomResStatus.getCheckOutDate());
         BedType bedType = BedType.valueOf(roomResStatus.getBedType());
 
+
+            if(checkOutDate.before(checkInDate)){
+                System.out.println("Invalid Date Selection ");
+                return "redirect:/book-room";
+            }
+
         System.out.println("Check in date " + checkInDate);
         System.out.println("Check Out date " + checkOutDate);
         System.out.println("Type " + roomResStatus.getBedType());
@@ -95,7 +101,12 @@ public class ReservationController {
         List<Room> rooms = this.roomService.getRooms();
 
         List<Reservation> bookedReservations = this.reservationService.overlappingReservations( checkInDate,  checkOutDate);
-
+        if(bookedReservations.isEmpty() ) {
+            System.out.println("No booking found ");
+        }
+        else {
+            bookedReservations.forEach(System.out::println);
+        }
 
 
             // Filter the rooms based on check-out date and bed type
@@ -108,6 +119,8 @@ public class ReservationController {
                     // Filter rooms based on bed type
                     .filter(room -> room.getBedInfo().equals(bedType))
                     .collect(Collectors.toList());
+
+
 
             model.addAttribute("rooms", filteredRooms);
 

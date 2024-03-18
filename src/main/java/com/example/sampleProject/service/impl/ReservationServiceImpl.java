@@ -43,7 +43,8 @@ public class ReservationServiceImpl implements ReservationService {
                 .filter(reservation ->((reservation.getCheckInDate().before(startDate) && reservation.getCheckOutDate().after(endDate))
                         || (reservation.getCheckInDate().after(startDate) && reservation.getCheckOutDate().before(endDate))
                         || (reservation.getCheckInDate().before(startDate) && reservation.getCheckOutDate().before(endDate))
-                        || (reservation.getCheckInDate().after(startDate) && reservation.getCheckOutDate().after(endDate))))
+                        || (reservation.getCheckInDate().after(startDate) && reservation.getCheckOutDate().after(endDate)))
+                        || (reservation.getCheckInDate().equals(startDate) && reservation.getCheckOutDate().equals(endDate)))
                 .collect(Collectors.toList());
 
         return notVaccant;
@@ -63,6 +64,8 @@ public class ReservationServiceImpl implements ReservationService {
         reservation.setGuestId(guestID); // Set guest ID
         Date currentDate = new Date();
         reservation.setDate(new java.sql.Date(currentDate.getTime())); // Set reservation date
+        reservation.setCheckInDate(new java.sql.Date(checkInDate.getTime()));
+        reservation.setCheckOutDate(new java.sql.Date(checkOutDate.getTime()));
         // Save the reservation entry
         this.reservationRepository.save(reservation);
     }
