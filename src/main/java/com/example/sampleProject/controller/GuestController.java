@@ -60,4 +60,7 @@ public class GuestController {
         redirectAttributes.addAttribute("guestId",guestId);
         return "redirect:/saveBooking";
     }
+
+    //Sample change for git
+
 }
