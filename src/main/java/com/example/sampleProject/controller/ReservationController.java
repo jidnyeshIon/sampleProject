@@ -152,11 +152,11 @@ public class ReservationController {
 //        System.out.println("Guest email :" + guest.getEmailAddress());
         try {
             guest = this.guestService.findGuestByEmailAddress(guest.getEmailAddress());
-<<<<<<< HEAD
+
         } catch (Exception e) {
 
             System.out.println("No booking found for the guest");
-=======
+
         System.out.println(guest.toString());
             long guestId = guest.getId();
             Room room = this.roomService.findRoomByRoomNumber(roomNo);
@@ -164,7 +164,7 @@ public class ReservationController {
             Reservation reservation = this.reservationService.getReservationByRoomIdAndGuestId(roomID,guestId);
 
             this.reservationService.deleteReservation(reservation);
->>>>>>> refactoring
+
             return "redirect:index.html";
 
         }
@@ -186,8 +186,8 @@ public class ReservationController {
         }
         long roomID = room.getId();
         Reservation reservation = this.reservationService.getReservationByRoomIdAndGuestId(roomID, guestId);
-        room.setCheckInDate(new java.sql.Date(new Date().getTime()));
-        room.setCheckOutDate(new java.sql.Date(new Date().getTime()));
+//        room.setCheckInDate(new java.sql.Date(new Date().getTime()));
+//        room.setCheckOutDate(new java.sql.Date(new Date().getTime()));
         room = this.roomService.saveRoom(room);
         this.reservationService.deleteReservation(reservation);
         return "redirect:index.html";
